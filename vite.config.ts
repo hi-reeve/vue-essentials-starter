@@ -3,7 +3,6 @@ import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import IconsResolver from 'unplugin-icons/resolver';
 import Icons from 'unplugin-icons/vite';
-import { FileSystemIconLoader } from 'unplugin-icons/loaders';
 import Components from 'unplugin-vue-components/vite';
 import {
 	HeadlessUiResolver,
@@ -49,23 +48,6 @@ export default defineConfig({
 		globals: true,
 		environment: 'jsdom',
 	},
-	server: {
-		proxy: {
-			'/api': {
-				target: 'https://dev-api.nathos.care/',
-				changeOrigin: true,
-				secure: false,
-				rewrite: path => path.replace(/^\/api/, ''),
-			},
-			'/google': {
-				target: 'https://www.googleapis.com/',
-				changeOrigin: true,
-				secure: false,
-				rewrite: path => path.replace(/^\/google/, ''),
-			},
-		},
-		port: 3000,
-	},
 	plugins: [
 		spaFallbackWithDot(),
 		viteCompression(),
@@ -108,7 +90,6 @@ export default defineConfig({
 			resolvers: [
 				IconsResolver({
 					prefix: 'icon',
-					customCollections: ['nh-icons'],
 				}),
 				HeadlessUiResolver({ prefix: '' }),
 				VueUseComponentsResolver(),
@@ -123,9 +104,6 @@ export default defineConfig({
 		}),
 		Icons({
 			compiler: 'vue3',
-			customCollections: {
-				'nh-icons': FileSystemIconLoader('./src/assets/icons'),
-			},
 		}),
 		Layouts(),
 		VueRouter({
@@ -137,8 +115,6 @@ export default defineConfig({
 	resolve: {
 		alias: {
 			'@': resolve(__dirname, './src'),
-			'vue-easy-lightbox':
-				'vue-easy-lightbox/dist/external-css/vue-easy-lightbox.esm.min.js',
 		},
 	},
 });
