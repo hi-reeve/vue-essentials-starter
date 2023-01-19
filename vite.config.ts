@@ -17,6 +17,10 @@ import viteCompression from 'vite-plugin-compression';
 import VueRouter from 'unplugin-vue-router/vite';
 import { VueRouterAutoImports } from 'unplugin-vue-router';
 import { ViteDevServer } from 'vite';
+
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite';
+
+import DefineOptions from 'unplugin-vue-define-options/vite';
 /**
  * Vite doesn't handle fallback html with dot (.), see https://github.com/vitejs/vite/issues/2415
  * @returns {import('vite').Plugin}
@@ -51,6 +55,11 @@ export default defineConfig({
 	plugins: [
 		spaFallbackWithDot(),
 		viteCompression(),
+		VueRouter({
+			dts: true,
+			extensions: ['.vue', '.tsx', '.jsx', '.ts', '.js'],
+		}),
+		DefineOptions(),
 		vue(),
 		vueJSX(),
 		VueTypeImports(),
@@ -93,6 +102,14 @@ export default defineConfig({
 				}),
 				HeadlessUiResolver({ prefix: '' }),
 				VueUseComponentsResolver(),
+				componentName => {
+					if (
+						componentName === 'Motion' ||
+						componentName === 'Presence'
+					) {
+						return { name: componentName, from: 'motion/vue' };
+					}
+				},
 			],
 			types: [
 				{
@@ -106,9 +123,10 @@ export default defineConfig({
 			compiler: 'vue3',
 		}),
 		Layouts(),
-		VueRouter({
-			dts: true,
-			extensions: ['vue', 'tsx', 'jsx', 'ts', 'js'],
+		VueI18nPlugin({
+			runtimeOnly: true,
+			compositionOnly: true,
+			include: resolve(__dirname, './src/locales/**/*.{y(a)?ml,json}'),
 		}),
 	],
 

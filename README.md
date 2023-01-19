@@ -24,3 +24,6 @@ an essentials starter for vue.js with typescript
 - sass
 - unplugin icons + iconify
 - date-fns
+- vue-toastification
+- vue-i18n + unplugin-vue-i18n
+- unplugin-define-options
