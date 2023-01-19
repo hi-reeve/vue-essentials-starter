@@ -27,3 +27,6 @@ an essentials starter for vue.js with typescript
 - vue-toastification
 - vue-i18n + unplugin-vue-i18n
 - unplugin-define-options
+- vee-validate
+- zod as schema data validation
+- yup as form schema validation

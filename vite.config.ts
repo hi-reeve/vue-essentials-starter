@@ -70,6 +70,10 @@ export default defineConfig({
 				'@vueuse/core',
 				'@vueuse/head',
 				'pinia',
+				'vue-i18n',
+				'vitest',
+				'vee-validate',
+
 				VueRouterAutoImports,
 				{
 					axios: [
@@ -81,6 +85,20 @@ export default defineConfig({
 						'useQuery',
 						'useQueryProvider',
 					],
+					zod: ['z'],
+					yup: [
+						'object',
+						'string',
+						'number',
+						'array',
+						'mixed',
+						'date',
+						'boolean',
+						'setLocale',
+						['lazy', 'yupLazy'],
+						['ref', 'yupRef'],
+					],
+					'vue-toastification': ['useToast'],
 				},
 			],
 			eslintrc: {
