@@ -30,3 +30,6 @@ an essentials starter for vue.js with typescript
 - vee-validate
 - zod as schema data validation
 - yup as form schema validation
+- husky as commit hooks
+- commitlint to standarize commit message
+- standard-version to release changelog
