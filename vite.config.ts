@@ -135,7 +135,7 @@ export default defineConfig({
 					names: ['DatePicker'],
 				},
 			],
-			extensions: ['vue', 'tsx'],
+			extensions: ['.vue', '.tsx'],
 		}),
 		Icons({
 			compiler: 'vue3',
