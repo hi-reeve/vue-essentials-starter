@@ -3,7 +3,7 @@
 <template>
 	<div class="grid w-screen h-screen place-content-center">
 		This is home with tailwindcss
+
+		<date-picker />
 	</div>
 </template>
-
-<style scoped></style>
